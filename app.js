@@ -65,22 +65,27 @@ function render() {
 }
 
 function initListeners() {
-  $('.js-gallery-list').on('click', '.kitty', function () {
-    var id = $(this).attr('class').split(' ')[1];
-    console.log(id);
-  });
-  $('.js-btn-cart').on('click', function () {
-    $('.js-btn-close').removeClass('hidden');
-    $('.js-shopping-cart').removeClass('hidden');
-    $('.js-btn-cart').addClass('hidden');
-  });
-  $('.js-btn-close').on('click', function () {
-    $('.js-btn-cart').removeClass('hidden');
-    $('.js-shopping-cart').addClass('hidden');
-    $('.js-btn-close').addClass('hidden');
-  });
+  $('.js-gallery-list').on('click', '.kitty', getId);
+  $('.js-btn-cart').on('click', openMenu);
+  $('.js-btn-close').on('click', closeMenu);
 }
 
+function getId() {
+  var id = $(this).attr('class').split(' ')[1];
+  console.log(id);
+}
+
+function closeMenu() {
+  $('.js-btn-cart').removeClass('hidden');
+  $('.js-shopping-cart').addClass('hidden');
+  $('.js-btn-close').addClass('hidden');
+}
+
+function openMenu() {
+  $('.js-btn-close').removeClass('hidden');
+  $('.js-shopping-cart').removeClass('hidden');
+  $('.js-btn-cart').addClass('hidden');
+}
 $(function () {
   render();
   initListeners();
