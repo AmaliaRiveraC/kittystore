@@ -49,7 +49,8 @@ var kitties = [
   }
 ];
 
-var order = [];
+//var order = [];
+
 
 function render() {
   for (var i = 0; i < kitties.length; i++) {
@@ -65,14 +66,40 @@ function render() {
 }
 
 function initListeners() {
-  $('.js-gallery-list').on('click', '.kitty', getId);
+  $('.js-gallery-list').on('click', '.kitty', initCart);
   $('.js-btn-cart').on('click', openMenu);
   $('.js-btn-close').on('click', closeMenu);
 }
 
-function getId() {
+const Cart = {
+  order: [],
+  sum: function() {
+    let totalSum = 0;
+    for (let i = 0; i < this.order.length; i++) {
+      totalSum += this.order[i].price;
+    }
+    console.log(totalSum);
+    return totalSum;
+  },
+  list: function() {
+    let li = ` `;
+    console.log(this.order)
+    for (let i = 0; i < this.order.length; i++) {
+      li += `${this.order[i].name} ${this.order[i].price} \n`;
+    }
+    console.log(li);
+  }
+}
+
+
+function initCart() {
   var id = $(this).attr('class').split(' ')[1];
-  console.log(id);
+  for (let i = 0; i < kitties.length; i++) {
+    if(id === kitties[i].id) {
+      Cart.order.push(kitties[i]);
+      console.log(Cart.order);
+    }
+  }
 }
 
 function closeMenu() {
@@ -85,6 +112,8 @@ function openMenu() {
   $('.js-btn-close').removeClass('hidden');
   $('.js-shopping-cart').removeClass('hidden');
   $('.js-btn-cart').addClass('hidden');
+  Cart.sum();
+  Cart.list();
 }
 $(function () {
   render();
