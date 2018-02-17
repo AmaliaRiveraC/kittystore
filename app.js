@@ -65,6 +65,14 @@ function render(array) {
 
 function getId() {
   var id = $(this).attr('class').split(' ')[1];
+  ordenarKitty(kitties, id);
+}
+
+function ordenarKitty(array, id) {
+  var selectKitty = array.filter(function(item) {
+    return id === item.id;  
+  });
+  order.push(selectKitty[0]);
   
 }
 
