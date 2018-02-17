@@ -51,18 +51,24 @@ var kitties = [
 
 var order = [];
 
-function render() {
-  for (var i = 0; i < kitties.length; i++) {
-    var kitty = kitties[i];
-    $('.js-gallery-list').append(`
+function render(array) {
+  array.forEach(function(kitty) {
+   $('.js-gallery-list').append(`
     <li class="kitty ${kitty.id}">
       <h3 class="title">${kitty.name}</h3>
       <img src="https://www.cryptokitties.co/images/${kitty.thumbnail}"/>
       <p>$${kitty.price}</p>
-    </li>
-    `);
-  }
+    </li>`);
+  })
+  
 }
+
+function getId() {
+  var id = $(this).attr('class').split(' ')[1];
+  
+}
+
+
 
 function initListeners() {
   $('.js-gallery-list').on('click', '.kitty', getId);
@@ -70,10 +76,6 @@ function initListeners() {
   $('.js-btn-close').on('click', closeMenu);
 }
 
-function getId() {
-  var id = $(this).attr('class').split(' ')[1];
-  console.log(id);
-}
 
 function closeMenu() {
   $('.js-btn-cart').removeClass('hidden');
@@ -87,6 +89,6 @@ function openMenu() {
   $('.js-btn-cart').addClass('hidden');
 }
 $(function () {
-  render();
+  render(kitties);
   initListeners();
 });
