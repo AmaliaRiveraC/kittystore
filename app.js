@@ -52,14 +52,14 @@ var kitties = [
 var order = [];
 
 function render(array) {
-  array.forEach(function(kitty) {
-   $('.js-gallery-list').append(`
-    <li class="kitty ${kitty.id}">
+  const newArray = array.map((kitty) => {
+    return  `<li class="kitty ${kitty.id}">
       <h3 class="title">${kitty.name}</h3>
       <img src="https://www.cryptokitties.co/images/${kitty.thumbnail}"/>
       <p>$${kitty.price}</p>
-    </li>`);
+    </li>`
   });
+  $('.js-gallery-list').html(newArray.join(``));
 }
 
 function getId() {
