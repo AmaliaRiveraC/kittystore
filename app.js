@@ -59,8 +59,7 @@ function render(array) {
       <img src="https://www.cryptokitties.co/images/${kitty.thumbnail}"/>
       <p>$${kitty.price}</p>
     </li>`);
-  })
-  
+  });
 }
 
 function getId() {
@@ -79,6 +78,7 @@ function ordenarKitty(array, id) {
 
 
 function initListeners() {
+  $('.modal').modal();
   $('.js-gallery-list').on('click', '.kitty', getId);
   $('.js-btn-cart').on('click', openMenu);
   $('.js-btn-close').on('click', closeMenu);
